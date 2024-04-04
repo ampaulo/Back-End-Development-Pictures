@@ -74,7 +74,14 @@ def create_picture():
 
 @app.route("/picture/<int:id>", methods=["PUT"])
 def update_picture(id):
-    pass
+    data_tmp = json.loads(request.data)
+    if data:
+        for i in range(len(data)):
+            if data[i]["id"] == data_tmp["id"]:
+                data[i] = data_tmp
+                return jsonify(Message=f"OK"), 200
+
+    return {"message": "Picture not found"}, 404
 
 ######################################################################
 # DELETE A PICTURE
