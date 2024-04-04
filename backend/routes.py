@@ -88,4 +88,10 @@ def update_picture(id):
 ######################################################################
 @app.route("/picture/<int:id>", methods=["DELETE"])
 def delete_picture(id):
-    pass
+    if data:
+        for x in range(len(data)):
+            if data[x]["id"] == id:
+                data.pop(x)
+                return jsonify(Message=f"OK"), 204
+
+    return {"message": "Picture not found"}, 404
