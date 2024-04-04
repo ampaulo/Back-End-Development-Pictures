@@ -57,7 +57,16 @@ def get_picture_by_id(id):
 
 @app.route("/picture", methods=["POST"])
 def create_picture():
-    pass
+    data_tmp = json.loads(request.data)
+    if data:
+        for x in data:
+            if x["id"] == data_tmp["id"]:
+                return jsonify(Message=f"picture with id {data_tmp['id']} already present"), 302
+
+        data.append(data_tmp)
+        return {"id": data_tmp["id"]}, 201
+
+    return {"message": "Internal server error"}, 500
 
 ######################################################################
 # UPDATE A PICTURE
