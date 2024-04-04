@@ -76,9 +76,9 @@ def create_picture():
 def update_picture(id):
     data_tmp = json.loads(request.data)
     if data:
-        for i in range(len(data)):
-            if data[i]["id"] == data_tmp["id"]:
-                data[i] = data_tmp
+        for x in range(len(data)):
+            if data[x]["id"] == data_tmp["id"]:
+                data[x] = data_tmp
                 return jsonify(Message=f"OK"), 200
 
     return {"message": "Picture not found"}, 404
